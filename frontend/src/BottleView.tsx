@@ -14,14 +14,14 @@ export const BottleView = ({articles}: BottleViewProps) => {
         }}
         >
             {articles.map(a => <Box
+            key={a.id}
             sx={{
                 aspectRatio: '1 / 1',
                 borderRadius: 2,
                 bgcolor: 'grey.100',
                 overflow: 'hidden',
                 p: 1,
-            }}
-            key={a.id}>
+            }}>
                 <Box
                 component="img"
                 src={a.image}
