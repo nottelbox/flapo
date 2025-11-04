@@ -7,6 +7,8 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import type { Article } from './article.types';
+import { BottleView } from './BottleView';
+import { DetailView } from './DetailView';
 
 const API_URL = 'https://localhost:7092/article'
 
@@ -15,7 +17,7 @@ function App() {
   const [bottleView, setBottleView] = useState<boolean>(false);
   const [filter, setFilter] = useState<boolean>(false);
 
-  const [articles, setArticles] = useState<Article[]>();
+  const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -46,9 +48,6 @@ function App() {
     }
   })
 
-  console.log('articles: ', articles);
-  
-
   return (
     <>
     <Box sx={{ flexGrow: 1 }}>
@@ -63,6 +62,7 @@ function App() {
         </Toolbar>
       </AppBar>
     </Box>
+    {bottleView ? <BottleView articles={articles}/> : <DetailView articles={articles}/>}
     </>
   )
 }
