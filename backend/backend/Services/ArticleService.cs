@@ -7,13 +7,16 @@ namespace backend.Services
     {
         private readonly ArticleHttpClient productHttpClient;
         private readonly ArticleFilterService articleFilterService;
+        private readonly ArticleSortingService articleSortingService;
 
         public ArticleService(
             ArticleHttpClient productHttpClient,
-            ArticleFilterService articleFilterService)
+            ArticleFilterService articleFilterService,
+            ArticleSortingService articleSortingService)
         {
             this.productHttpClient = productHttpClient;
             this.articleFilterService = articleFilterService;
+            this.articleSortingService = articleSortingService;
         }
 
         public async Task<List<Article>> GetArticles(string? sortByPrice, bool filter)
@@ -23,7 +26,18 @@ namespace backend.Services
             {
                 articles = articleFilterService.FilterArticles(articles);
             }
-            throw new NotImplementedException();
+            
+            if (sortByPrice == "asc")
+            {
+                articles = articleSortingService.SortAscending(articles);
+            }
+
+            if (sortByPrice == "desc")
+            {
+                articles = articleSortingService.SortAscending(articles);
+            }
+            
+            return articles;
         }
     }
 }
