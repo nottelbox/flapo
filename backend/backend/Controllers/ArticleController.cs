@@ -22,7 +22,8 @@ namespace backend.Controllers
                 return BadRequest();
             }
 
-            return Ok(await articleService.GetArticles(sortByPrice, filter));
+            return Ok((await articleService.GetArticles(sortByPrice, filter))
+                .Select(a => new ArticleResponseBody(a)));
             
         }
     }
