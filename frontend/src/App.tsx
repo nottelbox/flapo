@@ -1,33 +1,44 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import flapoLogo from '/favicon.png'
 import './App.css'
+import { AppBar, Box, Button, Stack, Toolbar } from '@mui/material'
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [sort, setSort] = useState<string>('');
+  const [bottleView, setBottleView] = useState<boolean>(false);
+  const [filter, setFilter] = useState<boolean>(false);
+
+  const toggleView = () => setBottleView(p => !p);
+  const toggleFilter = () => setFilter(p => !p);
+  const toggleSort = () => setSort(p => {
+    if (!p){
+      return 'asc';
+    }
+    if (p === 'asc'){
+      return 'desc';
+    } else {
+      return '';
+    }
+  })
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <img src={flapoLogo} alt="Vite logo" width="30" height="30" />
+          <Stack spacing={2} direction="row">
+          <Button color="inherit" onClick={toggleSort}>Sort {sort === 'asc' ? <ArrowUpwardIcon/> : sort === 'desc' ? <ArrowDownwardIcon/> : <></>}</Button>
+          <Button color="inherit" onClick={toggleView}>View</Button>
+          <Button color="inherit" onClick={toggleFilter}>Filter {filter ? <FilterAltIcon/> : <FilterAltOffIcon />}</Button>
+          </Stack>
+        </Toolbar>
+      </AppBar>
+    </Box>
     </>
   )
 }
