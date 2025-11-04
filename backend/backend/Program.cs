@@ -12,6 +12,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<ArticleService>();
 builder.Services.AddScoped<ArticleHttpClient>();
 builder.Services.AddScoped<ArticleFilterService>();
+builder.Services.AddScoped<ArticleSortingService>();
 
 var app = builder.Build();
 
