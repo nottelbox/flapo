@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<ArticleService>();
-builder.Services.AddScoped<ProductHttpClient>();
+builder.Services.AddScoped<ArticleHttpClient>();
 
 var app = builder.Build();
 

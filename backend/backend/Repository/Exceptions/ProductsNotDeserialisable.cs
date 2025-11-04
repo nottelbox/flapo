@@ -1,4 +1,4 @@
-﻿namespace backend.Repository
+﻿namespace backend.Repository.Exceptions
 {
     public class ProductsNotDeserialisable : Exception
     {

@@ -5,16 +5,16 @@ namespace backend.Services
 {
     public class ArticleService
     {
-        private readonly ProductHttpClient productHttpClient;
+        private readonly ArticleHttpClient productHttpClient;
 
-        public ArticleService(ProductHttpClient productHttpClient)
+        public ArticleService(ArticleHttpClient productHttpClient)
         {
             this.productHttpClient = productHttpClient;
         }
 
-        public async Task<List<ArticleForDisplay>> GetArticles(string? sortByPrice, bool filter)
+        public async Task<List<Article>> GetArticles(string? sortByPrice, bool filter)
         {
-            var products = await productHttpClient.GetProducts();
+            var products = await productHttpClient.GetArticles();
             throw new NotImplementedException();
         }
     }
