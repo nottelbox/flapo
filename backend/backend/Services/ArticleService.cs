@@ -34,7 +34,7 @@ namespace backend.Services
 
             if (sortByPrice == "desc")
             {
-                articles = articleSortingService.SortAscending(articles);
+                articles = articleSortingService.SortDescending(articles);
             }
             
             return articles;
